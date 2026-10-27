@@ -44,7 +44,7 @@ module.exports = function (router) {
             var user = await h.find(User, req.params.id);
             await Task.updateMany({ assignedUser: user.id }, UNASSIGNED);
             await user.deleteOne();
-            res.json({ message: 'User deleted', data: user });
+            res.status(204).end();
         });
 
     return router;

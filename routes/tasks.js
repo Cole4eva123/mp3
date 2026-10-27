@@ -45,7 +45,7 @@ module.exports = function (router) {
             var task = await h.find(Task, req.params.id);
             await removeFromPending(task);
             await task.deleteOne();
-            res.json({ message: 'Task deleted', data: task });
+            res.status(204).end();
         });
 
     return router;

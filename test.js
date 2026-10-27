@@ -12,6 +12,7 @@ async function call(method, path, body) {
         headers: { 'Content-Type': 'application/json' },
         body: body && JSON.stringify(body)
     });
+    if (res.status === 204) return { status: 204 };
     var json = await res.json();
     assert.ok('message' in json && 'data' in json, method + ' ' + path + ' response format');
     if (method === 'POST' && res.status === 201) created[path.slice(1)].push(json.data._id);
@@ -103,11 +104,11 @@ test('two-way references', async function () {
     await call('PUT', '/tasks/' + t2._id, task('t2', { assignedUser: a._id }));
     await call('PUT', '/tasks/' + t2._id, task('t2', { assignedUser: '' }));
     assert.deepEqual((await get('/users/' + a._id)).data.pendingTasks, []);
-    assert.equal((await call('DELETE', '/tasks/' + t1._id)).status, 200);
+    assert.equal((await call('DELETE', '/tasks/' + t1._id)).status, 204);
     assert.equal((await get('/tasks/' + t1._id)).status, 404);
     assert.deepEqual((await get('/users/' + b._id)).data.pendingTasks, []);
     await call('PUT', '/tasks/' + t2._id, task('t2', { assignedUser: b._id, completed: true }));
-    assert.equal((await call('DELETE', '/users/' + b._id)).status, 200);
+    assert.equal((await call('DELETE', '/users/' + b._id)).status, 204);
     assert.equal((await get('/tasks/' + t2._id)).data.assignedUserName, 'unassigned');
     assert.equal((await call('DELETE', '/users/' + b._id)).status, 404);
 });
