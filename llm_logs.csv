@@ -1,0 +1,5 @@
+date,tool,session_link,task,files_changed,result
+2026-10-26,Claude Code,https://claude.ai/code/cshk_012nHbcS9AiqbvVX15E8JUUbEwFSeru2CUW9gR4r8xVM4s,"Read README/FAQ requirements; implemented User and Task models and users/tasks endpoints (query params, validation, two-way references, error handling)","models/user.js; models/task.js; routes/helpers.js; routes/users.js; routes/tasks.js; routes/index.js; server.js",Local end-to-end tests passing against a local MongoDB
+2026-10-26,Claude Code,https://claude.ai/code/cshk_012nHbcS9AiqbvVX15E8JUUbEwFSeru2CUW9gR4r8xVM4s,Wrote end-to-end tests and reviewed/simplified the code (ponytail and code-simplifier),test.js; package.json; routes/tasks.js,4/4 tests passing
+2026-10-27,Claude Code,https://claude.ai/code/cshk_012nHbcS9AiqbvVX15E8JUUbEwFSeru2CUW9gR4r8xVM4s,Guided MongoDB Atlas and Render setup; set API_URL in submit.js,submit.js,Deployed at https://mp3-wtle.onrender.com
+2026-10-27,Claude Code,https://claude.ai/code/cshk_012nHbcS9AiqbvVX15E8JUUbEwFSeru2CUW9gR4r8xVM4s,Ran autograder (90/100); changed DELETE to respond 204 with an empty body,routes/users.js; routes/tasks.js; test.js,Autograder 100/100
